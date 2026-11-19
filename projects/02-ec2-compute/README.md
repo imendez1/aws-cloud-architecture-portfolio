@@ -1,21 +1,22 @@
 
 # Project 02 — Amazon EC2 Compute and Networking
 
-**Status:** In Progress  
-**Started:** November 17, 2026  
+**Status:** Completed
+**Started:** November 17, 2026
+**Completed:** November 18, 2026
 **AWS Region:** US East (Ohio) — us-east-2  
 **Certification:** AWS Certified Solutions Architect — Associate (SAA-C03)
 
 ## Project Overview
 
-This project documents hands-on experience deploying, connecting to, securing, monitoring, and managing Amazon EC2 instances.
+This project documents hands-on experience deploying, connecting to, securing, monitoring, and managing Amazon EC2 instances and associated networking resources.
 
-The project is part of my AWS Cloud Architecture learning portfolio and supports my preparation for the AWS Solutions Architect Associate certification and WGU's B.S. Cloud and Network Engineering program.
+The project is part of my AWS Cloud Architecture learning portfolio and supports my preparation for the AWS Certified Solutions Architect — Associate certification and WGU's B.S. Cloud and Network Engineering program.
 
 ## Environment
 
 - AWS account: AWS Free Plan
-- Region: us-east-2
+- Region: US East (Ohio) — us-east-2
 - Operating systems: Amazon Linux and Windows Server
 - Instance type: t3.micro
 - Tools: AWS Management Console, AWS CLI, PowerShell, SSH, RDP, and Amazon CloudWatch
@@ -58,25 +59,85 @@ The project is part of my AWS Cloud Architecture learning portfolio and supports
 - Studied instance status checks and their troubleshooting implications.
 - Examined basic and detailed monitoring concepts.
 
-### 6. Resource Management
+### 6. Elastic Network Interfaces and IP Addressing
 
-- Stopped instances when they were temporarily unnecessary.
-- Terminated EC2 instances after completing hands-on exercises.
-- Reviewed the importance of monitoring AWS resource usage and costs.
+- Examined primary and secondary Elastic Network Interfaces (ENIs).
+- Practiced creating and attaching network interfaces to EC2 instances.
+- Observed how automatically assigned public IPv4 addresses can change after stopping and starting an instance.
+- Explored Elastic IP addresses for persistent public IPv4 connectivity.
+- Reviewed network interface placement requirements within an Availability Zone.
+
+### 7. Private Subnets and Bastion Hosts
+
+- Created a private subnet and associated route table.
+- Launched a private EC2 instance without a public IP address.
+- Configured a public EC2 instance as a bastion host.
+- Practiced private-instance connectivity through a bastion host.
+- Reviewed security group configurations for controlled SSH access.
+- Studied how VPC routing enables communication between public and private subnets.
+
+### 8. NAT Gateway Configuration
+
+- Created a public NAT gateway in a public subnet.
+- Associated an Elastic IP address with the NAT gateway.
+- Updated the private subnet route table to direct outbound traffic through the NAT gateway.
+- Tested outbound internet connectivity from the private EC2 instance.
+- Reviewed how NAT gateways enable private instances to initiate internet connections without exposing them to unsolicited inbound internet traffic.
+
+### 9. Resource Management and Cleanup
+
+- Practiced stopping and terminating EC2 instances.
+- Reviewed the billing implications of running and stopped instances.
+- Studied the importance of releasing unused Elastic IP addresses.
+- Reviewed NAT gateway hourly and data processing charges.
+- Completed post-lab cleanup by terminating unused EC2 instances, deleting the NAT gateway and associated networking resources, and releasing unused Elastic IP addresses.
+- Removed temporary resources after completing the hands-on exercises to avoid unnecessary ongoing charges.
 
 ## Additional Concepts Studied
 
-The following topics were covered through course lectures:
+The following topics were covered through course lectures and architecture examples.
+
+### EC2 Networking and Performance
 
 - Cluster, partition, and spread placement groups
-- Elastic Network Interfaces (ENI)
 - Elastic Network Adapter (ENA)
 - Elastic Fabric Adapter (EFA)
-- Public and private IPv4 addresses
-- Elastic IP addresses
-- Enhanced networking and high-performance computing
+- Enhanced networking
+- High-performance computing (HPC)
+- Multi-AZ networking architecture
 
-These topics are documented as conceptual learning rather than completed deployment exercises.
+### EC2 Lifecycle and Infrastructure
+
+- EC2 instance lifecycle states
+- Rebooting, stopping, hibernating, and terminating
+- EBS-backed versus instance store storage
+- Amazon Machine Images (AMIs)
+- AWS Nitro System
+- Nitro Hypervisor and Nitro Cards
+- Nitro Enclaves and secure data processing
+
+### EC2 Pricing and Cost Optimization
+
+- On-Demand Instances
+- Reserved Instances
+- Standard and Convertible Reserved Instances
+- Spot Instances
+- Compute and EC2 Instance Savings Plans
+- Dedicated Instances
+- Dedicated Hosts
+- On-Demand Capacity Reservations
+
+### Architecture Patterns
+
+- User data for automated instance configuration
+- Cluster placement groups and EFA for HPC
+- Reserved Instances for baseline capacity
+- Spot Instances for fault-tolerant workloads
+- Elastic IP addresses for static public IPv4 requirements
+- NAT gateways for private subnet outbound connectivity
+- Bastion hosts for administrative access
+- Spread placement groups for hardware fault isolation
+- Nitro-based instances for improved performance and security
 
 ## Security Best Practices
 
@@ -85,33 +146,54 @@ These topics are documented as conceptual learning rather than completed deploym
 - Restrict SSH and RDP access to trusted source IP addresses.
 - Apply least-privilege IAM permissions.
 - Avoid storing secrets in EC2 user data.
-- Terminate unused lab instances to reduce unnecessary costs.
+- Keep private SSH keys outside EC2 bastion hosts.
+- Use private subnets for instances that do not require direct internet access.
+- Configure security groups to restrict access between public and private instances.
+- Consider AWS Systems Manager Session Manager as an alternative to bastion hosts.
+- Terminate unused lab instances and remove unnecessary networking resources.
 
 ## Key Lessons Learned
 
 1. EC2 provides flexible compute capacity for Linux and Windows workloads.
-2. Security groups control network access to instances.
+2. Security groups control network access to EC2 instances.
 3. User data enables automated instance initialization.
-4. Instance metadata supports dynamic configuration.
+4. Instance metadata supports dynamic configuration and application bootstrapping.
 5. IAM roles provide temporary credentials for AWS service access.
-6. CloudWatch provides metrics for monitoring EC2 performance.
-7. Placement groups and networking capabilities should be selected based on workload requirements.
-8. Proper resource cleanup is an important part of AWS operations.
+6. CloudWatch provides monitoring and EC2 status checks.
+7. ENIs provide flexible network connectivity within an Availability Zone.
+8. Elastic IP addresses support persistent public IPv4 addressing.
+9. Private subnets help isolate resources from direct internet access.
+10. Bastion hosts enable controlled administrative access to private instances.
+11. NAT gateways provide outbound connectivity for private subnet resources.
+12. Placement groups and enhanced networking support workload-specific performance requirements.
+13. EC2 purchasing options should be selected according to workload duration, predictability, and interruption tolerance.
+14. AWS Nitro improves EC2 performance and security.
+15. Proper resource cleanup and cost monitoring are essential AWS operational practices.
 
-## Current Progress
+## Course Completion
 
 **Neal Davis SAA-C03 Course — Section 3: Amazon EC2**
 
-- Lessons completed: 24–36
-- Section progress: 13 of 27 items (48.1%)
-- Last updated: November 17, 2026
+- Lessons covered: 24–49
+- Section items completed: 27 of 27
+- Section completion: 100%
+- Completed: November 18, 2026
 
-## Next Steps
+## Project Outcome
 
-- Complete the remaining Amazon EC2 lessons.
-- Continue practicing EC2 networking, storage, and management.
-- Expand this project with additional hands-on exercises.
-- Update the project documentation as new skills are demonstrated.
+Completed the Amazon EC2 section of the SAA-C03 course, combining conceptual architecture knowledge with hands-on exercises involving EC2 instances, IAM roles, monitoring, network interfaces, private subnets, bastion hosts, and NAT gateways.
+
+The project demonstrates foundational skills in AWS compute deployment, network connectivity, access control, cost optimization, and cloud infrastructure management.
+
+All temporary AWS resources used for the EC2 hands-on labs were cleaned up after the exercises.
+
+## Future Improvements
+
+- Add sanitized architecture diagrams for EC2 networking.
+- Expand infrastructure deployment using Infrastructure as Code (IaC).
+- Explore AWS Systems Manager Session Manager.
+- Practice multi-AZ high availability and Auto Scaling architectures.
+- Continue building AWS projects as additional course sections are completed.
 
 ## Security Notice
 
