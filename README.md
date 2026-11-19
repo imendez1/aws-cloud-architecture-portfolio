@@ -40,17 +40,19 @@ Explored AWS Identity and Access Management (IAM), including authentication, aut
 
 ### Project 02 — Amazon EC2 Compute and Networking
 
-**Status:** In Progress — Started November 17, 2026
+**Status:** Completed — November 18, 2026
 
 **AWS Region:** US East (Ohio) — us-east-2
 
-**AWS Services and Technologies:** Amazon EC2, Amazon VPC, IAM Roles, AWS STS, Amazon CloudWatch, EC2 User Data, EC2 Instance Metadata, Security Groups.
+**AWS Services and Technologies:** Amazon EC2, Amazon VPC, IAM Roles, AWS STS, Amazon CloudWatch, EC2 User Data, EC2 Instance Metadata, Security Groups, Elastic Network Interfaces, Elastic IP Addresses, NAT Gateways.
 
 **Project Summary:**
 
 Deployed, configured, secured, monitored, and managed Amazon EC2 instances running Linux and Windows Server.
 
-Explored EC2 networking, remote connectivity, automated instance initialization, instance metadata security, IAM roles, CloudWatch monitoring, and resource management.
+Implemented hands-on EC2 networking exercises involving Elastic Network Interfaces, public and private IP addressing, private subnets, bastion hosts, and NAT gateways.
+
+Explored EC2 architecture, automated instance initialization, instance metadata security, IAM roles, CloudWatch monitoring, pricing models, and infrastructure lifecycle management.
 
 **Hands-On Activities:**
 
@@ -64,25 +66,38 @@ Explored EC2 networking, remote connectivity, automated instance initialization,
 - Created and verified a webpage displaying EC2 instance metadata.
 - Practiced assigning IAM roles and permissions to EC2 instances.
 - Explored Amazon CloudWatch monitoring and EC2 status checks.
-- Practiced stopping and terminating EC2 instances after lab completion.
+- Created and attached Elastic Network Interfaces (ENIs).
+- Explored public IPv4 address changes and Elastic IP addressing.
+- Created a private subnet and associated route table.
+- Launched a private EC2 instance without a public IP address.
+- Configured a public EC2 instance as a bastion host.
+- Practiced SSH connectivity to a private instance through a bastion host.
+- Created a public NAT gateway with an Elastic IP address.
+- Configured private subnet routing through the NAT gateway.
+- Verified outbound internet connectivity from a private EC2 instance.
+- Completed AWS resource cleanup after finishing the hands-on exercises.
 
 **Additional Concepts Studied:**
 
 - Cluster, partition, and spread placement groups.
-- Elastic Network Interfaces (ENI).
 - Elastic Network Adapter (ENA).
 - Elastic Fabric Adapter (EFA).
-- Public and private IPv4 addresses.
-- Elastic IP addresses.
 - Enhanced networking and high-performance computing.
+- EC2 instance lifecycle and storage options.
+- Amazon Machine Images (AMIs).
+- AWS Nitro System and Nitro Enclaves.
+- On-Demand, Reserved, and Spot Instances.
+- Savings Plans and Capacity Reservations.
+- Dedicated Instances and Dedicated Hosts.
+- EC2 architecture patterns and cost optimization.
 
-**Current Progress:**
+**Course Completion:**
 
 Neal Davis AWS SAA-C03 Course — Section 3: Amazon EC2
 
-- Lessons completed: 24–36
-- Progress: 13 of 27 items (48.1%)
-- Last updated: November 17, 2026
+- Section items completed: 27 of 27
+- Section completion: 100%
+- Completed: November 18, 2026
 
 [View Project 02 — Amazon EC2 Compute and Networking](projects/02-ec2-compute/README.md)
 
@@ -99,6 +114,9 @@ Neal Davis AWS SAA-C03 Course — Section 3: Amazon EC2
 - AWS Security Token Service (STS)
 - Amazon CloudWatch
 - AWS CloudShell
+- Amazon EC2 NAT Gateways
+- Amazon EC2 Elastic Network Interfaces (ENIs)
+- Amazon EC2 Elastic IP Addresses
 
 ### Cloud Infrastructure and Security
 
@@ -108,8 +126,14 @@ Neal Davis AWS SAA-C03 Course — Section 3: Amazon EC2
 - EC2 User Data and Instance Metadata
 - IMDSv1 and IMDSv2
 - Public, Private, and Elastic IP Addressing
+- VPC Subnets and Route Tables
+- Bastion Host Configuration
+- NAT Gateway Configuration
+- SSH and RDP Connectivity
 - Cloud Monitoring and Troubleshooting
 - Least-Privilege Security
+- EC2 Pricing and Cost Optimization
+- AWS Resource Lifecycle Management
 
 ### Development and Administration Tools
 
@@ -139,4 +163,4 @@ All projects are developed in a learning environment.
 
 No AWS credentials, passwords, access keys, private keys, account identifiers, or other sensitive information are intentionally published in this repository.
 
-AWS resources are stopped or terminated when no longer required to reduce unnecessary costs.
+Temporary AWS resources are deleted after lab completion to reduce unnecessary costs.
