@@ -1,4 +1,3 @@
-
 # AWS Cloud Architecture Portfolio
 
 Hands-on AWS cloud architecture projects demonstrating networking, security, automation, high availability, and infrastructure design.
@@ -91,15 +90,53 @@ Explored EC2 architecture, automated instance initialization, instance metadata 
 - Dedicated Instances and Dedicated Hosts.
 - EC2 architecture patterns and cost optimization.
 
-**Course Completion:**
-
-Neal Davis AWS SAA-C03 Course — Section 3: Amazon EC2
-
-- Section items completed: 27 of 27
-- Section completion: 100%
-- Completed: November 18, 2026
-
 [View Project 02 — Amazon EC2 Compute and Networking](projects/02-ec2-compute/README.md)
+
+---
+
+### Project 03 — AWS Elastic Load Balancing and Auto Scaling
+
+**Status:** In Progress — Started November 19, 2026
+
+**AWS Services and Technologies:** Amazon EC2, EC2 Auto Scaling, Application Load Balancer (ALB), Elastic Load Balancing (ELB), Amazon CloudWatch, EC2 Launch Templates, Target Groups, Security Groups, Amazon VPC, EC2 User Data.
+
+**Project Summary:**
+
+Implemented a highly available and scalable web application architecture using Amazon EC2 Auto Scaling and an Application Load Balancer.
+
+Configured automatic EC2 instance replacement, distributed HTTP traffic across multiple Availability Zones, and implemented dynamic scaling policies based on application demand.
+
+**Hands-On Activities:**
+
+- Created an EC2 launch template with an Apache web server initialization script.
+- Deployed an Auto Scaling Group with a desired capacity of two EC2 instances.
+- Configured instance distribution across multiple Availability Zones.
+- Tested automatic EC2 instance replacement.
+- Created an Application Load Balancer and HTTP target group.
+- Configured health checks and automatic target registration.
+- Integrated the Application Load Balancer with the Auto Scaling Group.
+- Verified HTTP traffic distribution across healthy EC2 instances.
+- Increased the Auto Scaling Group maximum capacity to four instances.
+- Configured a target tracking scaling policy using ALB request count per target.
+- Generated application traffic to test dynamic scaling.
+- Monitored CloudWatch alarms and Auto Scaling activity.
+- Verified automatic scale-out and registration of additional EC2 instances.
+
+**Additional Concepts Studied:**
+
+- Vertical scaling versus horizontal scaling.
+- Stateful versus stateless applications.
+- High availability and fault tolerance.
+- Synchronous and asynchronous replication.
+- Application Load Balancer versus Network Load Balancer.
+- Load balancer listeners and target groups.
+- Target tracking, simple, step, and scheduled scaling.
+- Instance warm-up periods and scaling cooldowns.
+- Application durability versus availability.
+
+**Course Progress:**
+
+[View Project 03 — AWS Elastic Load Balancing and Auto Scaling](projects/03-elb-auto-scaling/README.md)
 
 ---
 
@@ -117,6 +154,11 @@ Neal Davis AWS SAA-C03 Course — Section 3: Amazon EC2
 - Amazon EC2 NAT Gateways
 - Amazon EC2 Elastic Network Interfaces (ENIs)
 - Amazon EC2 Elastic IP Addresses
+- Amazon EC2 Auto Scaling
+- Elastic Load Balancing (ELB)
+- Application Load Balancer (ALB)
+- EC2 Launch Templates
+- Elastic Load Balancing Target Groups
 
 ### Cloud Infrastructure and Security
 
@@ -134,6 +176,15 @@ Neal Davis AWS SAA-C03 Course — Section 3: Amazon EC2
 - Least-Privilege Security
 - EC2 Pricing and Cost Optimization
 - AWS Resource Lifecycle Management
+- EC2 Auto Scaling Group Configuration
+- Multi-Availability Zone Deployments
+- Application Load Balancer Configuration
+- Target Groups and Health Checks
+- Dynamic Scaling Policies
+- CloudWatch Alarms and Metrics
+- Load Testing and Scaling Validation
+- Automatic EC2 Instance Replacement
+- High Availability and Fault Tolerance
 
 ### Development and Administration Tools
 
