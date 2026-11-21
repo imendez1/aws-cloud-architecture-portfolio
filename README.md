@@ -96,15 +96,15 @@ Explored EC2 architecture, automated instance initialization, instance metadata 
 
 ### Project 03 — AWS Elastic Load Balancing and Auto Scaling
 
-**Status:** In Progress — Started November 19, 2026
+**Status:** Completed — November 20, 2026
 
-**AWS Services and Technologies:** Amazon EC2, EC2 Auto Scaling, Application Load Balancer (ALB), Elastic Load Balancing (ELB), Amazon CloudWatch, EC2 Launch Templates, Target Groups, Security Groups, Amazon VPC, EC2 User Data.
+**AWS Services and Technologies:** Amazon EC2, EC2 Auto Scaling, Application Load Balancer (ALB), Network Load Balancer (NLB), Elastic Load Balancing (ELB), Amazon CloudWatch, EC2 Launch Templates, Target Groups, Security Groups, Amazon VPC, EC2 User Data, Elastic IP Addresses.
 
 **Project Summary:**
 
-Implemented a highly available and scalable web application architecture using Amazon EC2 Auto Scaling and an Application Load Balancer.
+Deployed and tested scalable, highly available application infrastructure using Amazon EC2 Auto Scaling and Elastic Load Balancing.
 
-Configured automatic EC2 instance replacement, distributed HTTP traffic across multiple Availability Zones, and implemented dynamic scaling policies based on application demand.
+Configured automatic EC2 instance replacement, distributed HTTP traffic across multiple Availability Zones, implemented dynamic scaling policies, and deployed a Network Load Balancer supporting TCP application traffic.
 
 **Hands-On Activities:**
 
@@ -121,6 +121,12 @@ Configured automatic EC2 instance replacement, distributed HTTP traffic across m
 - Generated application traffic to test dynamic scaling.
 - Monitored CloudWatch alarms and Auto Scaling activity.
 - Verified automatic scale-out and registration of additional EC2 instances.
+- Created an internet-facing Network Load Balancer.
+- Configured Elastic IP addresses for static public IP connectivity.
+- Created a TCP listener using custom port 8181.
+- Configured an EC2 launch template and Auto Scaling Group for the NLB exercise.
+- Tested application connectivity from a separate VPC using `curl`.
+- Completed AWS resource cleanup after the hands-on exercises.
 
 **Additional Concepts Studied:**
 
@@ -129,12 +135,14 @@ Configured automatic EC2 instance replacement, distributed HTTP traffic across m
 - High availability and fault tolerance.
 - Synchronous and asynchronous replication.
 - Application Load Balancer versus Network Load Balancer.
-- Load balancer listeners and target groups.
+- Cross-zone load balancing.
+- Target groups, listeners, and health checks.
 - Target tracking, simple, step, and scheduled scaling.
 - Instance warm-up periods and scaling cooldowns.
+- Session state and session stickiness.
 - Application durability versus availability.
-
-**Course Progress:**
+- Multi-Availability Zone architecture.
+- Cross-region disaster recovery considerations.
 
 [View Project 03 — AWS Elastic Load Balancing and Auto Scaling](projects/03-elb-auto-scaling/README.md)
 
@@ -157,6 +165,7 @@ Configured automatic EC2 instance replacement, distributed HTTP traffic across m
 - Amazon EC2 Auto Scaling
 - Elastic Load Balancing (ELB)
 - Application Load Balancer (ALB)
+- Network Load Balancer (NLB)
 - EC2 Launch Templates
 - Elastic Load Balancing Target Groups
 
@@ -179,10 +188,14 @@ Configured automatic EC2 instance replacement, distributed HTTP traffic across m
 - EC2 Auto Scaling Group Configuration
 - Multi-Availability Zone Deployments
 - Application Load Balancer Configuration
+- Network Load Balancer Configuration
 - Target Groups and Health Checks
 - Dynamic Scaling Policies
 - CloudWatch Alarms and Metrics
-- Load Testing and Scaling Validation
+- HTTP and TCP Listener Configuration
+- Elastic IP Address Management
+- Application Load Testing
+- Cross-VPC Connectivity Testing
 - Automatic EC2 Instance Replacement
 - High Availability and Fault Tolerance
 
@@ -196,6 +209,7 @@ Configured automatic EC2 instance replacement, distributed HTTP traffic across m
 - SSH and Remote Desktop Protocol (RDP)
 - JSON
 - Bash Scripting
+- curl
 
 ## Learning Objectives
 

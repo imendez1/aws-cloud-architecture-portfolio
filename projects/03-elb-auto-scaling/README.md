@@ -1,153 +1,276 @@
 # Project 03 — AWS Elastic Load Balancing and Auto Scaling
 
-**Status:** In Progress
+**Status:** Completed — November 20, 2026
 **Started:** November 19, 2026
-**AWS Certification:** Solutions Architect – Associate (SAA-C03)
+**AWS Certification:** AWS Certified Solutions Architect – Associate (SAA-C03)
 **Course:** Neal Davis — AWS Certified Solutions Architect Associate
 
 ## Project Overview
 
-This project demonstrates how to deploy a scalable, highly available web application using Amazon EC2 Auto Scaling and Elastic Load Balancing.
+This project demonstrates the deployment and management of scalable, highly available application infrastructure using Amazon EC2 Auto Scaling and Elastic Load Balancing.
 
-The hands-on exercises focus on distributing application traffic across multiple EC2 instances, automatically replacing terminated instances, and dynamically adjusting compute capacity in response to application demand.
+The hands-on exercises focused on deploying EC2 Auto Scaling Groups, configuring Application and Network Load Balancers, implementing dynamic scaling policies, and validating application connectivity across AWS networking environments.
+
+The project demonstrates how AWS services work together to distribute application traffic, maintain compute capacity, automatically replace failed instances, and respond to changing application demand.
 
 ## AWS Services and Technologies
 
-- Amazon EC2
+- Amazon Elastic Compute Cloud (EC2)
 - Amazon EC2 Auto Scaling
 - Application Load Balancer (ALB)
+- Network Load Balancer (NLB)
 - Elastic Load Balancing (ELB)
 - Amazon CloudWatch
 - EC2 Launch Templates
+- Amazon Virtual Private Cloud (VPC)
 - EC2 Security Groups
-- Amazon VPC and Availability Zones
+- Elastic IP Addresses
 - EC2 User Data
 - Apache HTTP Server
+- Target Groups and Health Checks
+- Network Access Control Lists (NACLs)
+- AWS Availability Zones
 
-## Architecture
+## Architecture Overview
 
-The architecture consists of an internet-facing Application Load Balancer distributing HTTP traffic to EC2 web servers managed by an Auto Scaling Group across multiple Availability Zones.
+The primary architecture uses an internet-facing Application Load Balancer to distribute incoming HTTP requests across EC2 instances managed by an Auto Scaling Group.
 
-**Traffic Flow:**
+**Application Traffic Flow:**
 
 Internet Users → Application Load Balancer → Target Group → EC2 Instances (Auto Scaling Group)
 
-The Auto Scaling Group maintains the configured desired capacity and launches replacement instances when necessary.
+The Auto Scaling Group maintains the configured desired capacity and automatically launches replacement instances when necessary.
+
+Dynamic scaling policies adjust compute capacity based on application traffic and CloudWatch monitoring.
+
+A separate hands-on exercise demonstrates Network Load Balancer deployment using TCP traffic, static public IP addresses, and application connectivity testing.
 
 ## Hands-On Lab 1 — Create an Auto Scaling Group
 
-**Status:** Completed
+**Status:** Completed — November 19, 2026
+
+### Objective
+
+Deploy an Amazon EC2 Auto Scaling Group that maintains application availability by automatically managing and replacing EC2 instances.
 
 ### Implementation
 
-1. Prepared a user data script (`user_data_web_server.sh`) to install Apache and configure a web page displaying the instance's Availability Zone.
-2. Created an EC2 launch template specifying an Amazon Machine Image, instance type, security group, and user data.
-3. Created an Auto Scaling Group named `ASG1`.
-4. Configured a desired capacity of two EC2 instances.
-5. Selected multiple Availability Zones for high availability.
-6. Verified that EC2 instances launched successfully.
-7. Terminated an instance to test automatic replacement.
+1. Prepared a user data script named `user_data_web_server.sh` to install Apache HTTP Server and configure a custom webpage displaying the instance's Availability Zone.
+2. Created an EC2 launch template defining the Amazon Machine Image (AMI), EC2 instance type, security group, and user data.
+3. Configured a `t2.micro` EC2 instance type for the exercise.
+4. Created an Auto Scaling Group named `ASG1`.
+5. Configured a desired capacity of two EC2 instances.
+6. Selected multiple Availability Zones for improved availability.
+7. Verified that the Auto Scaling Group successfully launched the configured EC2 instances.
+8. Manually terminated an EC2 instance to test automatic replacement.
 
 ### Validation
 
-The Auto Scaling Group successfully launched a replacement EC2 instance to restore the configured desired capacity.
+The Auto Scaling Group automatically launched a replacement EC2 instance after one of the original instances was terminated.
+
+The replacement restored the configured desired capacity of two instances.
+
+### Technical Skills Demonstrated
+
+- EC2 launch template configuration
+- EC2 user data automation
+- Auto Scaling Group deployment
+- Desired capacity management
+- Multi-Availability Zone deployment
+- Automatic EC2 instance replacement
 
 ## Hands-On Lab 2 — Create an Application Load Balancer
 
-**Status:** Completed
+**Status:** Completed — November 19, 2026
+
+### Objective
+
+Deploy an Application Load Balancer to distribute HTTP traffic across multiple EC2 instances managed by an Auto Scaling Group.
 
 ### Implementation
 
 1. Created an HTTP target group using port 80.
-2. Configured health checks to monitor registered EC2 instances.
+2. Configured health checks to monitor the availability of registered EC2 instances.
 3. Associated the target group with the existing Auto Scaling Group.
 4. Created an internet-facing Application Load Balancer.
-5. Configured subnets, security groups, and an HTTP listener.
-6. Verified automatic target registration.
-7. Tested HTTP traffic distribution across EC2 instances in different Availability Zones.
+5. Selected the appropriate VPC and subnets across multiple Availability Zones.
+6. Configured security groups to allow application traffic.
+7. Created an HTTP listener to forward incoming requests to the target group.
+8. Verified automatic target registration for EC2 instances launched by the Auto Scaling Group.
+9. Tested application traffic distribution across EC2 instances in different Availability Zones.
 
 ### Validation
 
-The Application Load Balancer successfully distributed requests between healthy EC2 instances.
+The Application Load Balancer successfully distributed incoming HTTP requests between healthy EC2 instances.
 
-New instances launched by the Auto Scaling Group were automatically registered with the target group.
+The target group registered the EC2 instances managed by the Auto Scaling Group.
+
+The exercise demonstrated how load balancing and Auto Scaling work together to support highly available applications.
+
+### Technical Skills Demonstrated
+
+- Application Load Balancer deployment
+- HTTP listener configuration
+- Target group configuration
+- Health check management
+- Auto Scaling integration
+- Multi-Availability Zone traffic distribution
+- Application connectivity testing
 
 ## Hands-On Lab 3 — Create a Scaling Policy
 
-**Status:** Completed
+**Status:** Completed — November 19, 2026
+
+### Objective
+
+Implement dynamic EC2 Auto Scaling based on application traffic to automatically increase compute capacity when demand rises.
 
 ### Implementation
 
-1. Updated the Auto Scaling Group's maximum capacity to four EC2 instances.
-2. Created a target tracking scaling policy.
-3. Selected the Application Load Balancer request count per target metric.
-4. Configured a target value of 50 requests per target.
-5. Generated application traffic to test the scaling policy.
-6. Monitored CloudWatch alarms and Auto Scaling activity.
-7. Observed additional EC2 instances launch in response to increased demand.
-8. Verified that newly launched instances registered as healthy targets.
+1. Accessed the existing EC2 Auto Scaling Group.
+2. Increased the maximum group capacity from two to four EC2 instances.
+3. Created a dynamic target tracking scaling policy.
+4. Selected the Application Load Balancer request count per target metric.
+5. Configured a target value of 50 requests per target.
+6. Generated application traffic to simulate increased demand.
+7. Monitored CloudWatch alarms and Auto Scaling activity.
+8. Observed the Auto Scaling Group launch additional EC2 instances.
+9. Verified that newly launched instances automatically registered with the load balancer target group.
+10. Confirmed that the Application Load Balancer distributed traffic across the expanded group of healthy instances.
 
 ### Validation
 
-The scaling policy successfully increased EC2 capacity in response to application traffic.
+The increased application traffic triggered the scaling policy, causing the Auto Scaling Group to launch additional EC2 instances.
 
-The Application Load Balancer distributed traffic across the expanded group of healthy instances.
+New instances successfully registered as healthy targets.
+
+The exercise demonstrated automatic capacity adjustment in response to changing application demand.
+
+### Technical Skills Demonstrated
+
+- Target tracking scaling policy configuration
+- Application Load Balancer request count metrics
+- CloudWatch monitoring
+- Auto Scaling capacity management
+- Application load testing
+- Automatic scale-out validation
+- Dynamic infrastructure scaling
+
+## Hands-On Lab 4 — Create a Network Load Balancer
+
+**Status:** Completed — November 20, 2026
+
+### Objective
+
+Deploy an internet-facing Network Load Balancer to support TCP application traffic using static public IP addresses.
+
+### Implementation
+
+1. Created an internet-facing Network Load Balancer.
+2. Configured Elastic IP addresses to provide static public IP connectivity.
+3. Created a TCP listener using custom port `8181`.
+4. Configured a target group for the application instances.
+5. Created an EC2 launch template defining the application instance configuration.
+6. Configured an Auto Scaling Group to manage the application instances.
+7. Reviewed network ACL settings to restrict traffic based on approved source IP addresses.
+8. Tested application connectivity from a separate VPC.
+9. Used the `curl` command to verify connectivity to the application through the Network Load Balancer.
+10. Removed temporary AWS resources after completing the exercise.
+
+### Validation
+
+Successfully completed the Network Load Balancer deployment and connectivity testing.
+
+The exercise demonstrated how an NLB supports TCP-based applications and static public IP addressing.
+
+Application connectivity was validated using `curl` from a separate VPC.
+
+### Technical Skills Demonstrated
+
+- Network Load Balancer deployment
+- TCP listener configuration
+- Custom application ports
+- Elastic IP configuration
+- Target group management
+- Auto Scaling Group integration
+- Network ACL configuration concepts
+- Cross-VPC connectivity testing
+- Linux command-line troubleshooting
+- AWS resource cleanup
 
 ## Key Technical Concepts
 
 ### High Availability
 
-Deploying EC2 instances across multiple Availability Zones reduces dependence on a single Availability Zone.
+Deploying EC2 instances across multiple Availability Zones reduces dependence on a single Availability Zone and improves application availability.
 
 ### Elasticity
 
-Auto Scaling dynamically adjusts compute capacity to meet changing application demand.
+EC2 Auto Scaling adjusts compute capacity in response to changing application demand.
 
 ### Health Checks
 
-Load balancer health checks help prevent traffic from being routed to unhealthy targets.
+Elastic Load Balancing health checks help ensure that incoming traffic is directed to healthy application targets.
 
 ### Dynamic Scaling
 
-Target tracking scaling policies adjust capacity automatically to maintain a specified performance metric.
+Target tracking policies automatically adjust EC2 capacity to maintain a specified performance metric.
 
-### Fault Recovery
+### Automatic Instance Replacement
 
-Auto Scaling Groups replace failed or terminated instances to maintain desired capacity.
+Auto Scaling Groups automatically replace terminated or unhealthy EC2 instances to maintain configured capacity.
+
+### Application Load Balancing
+
+Application Load Balancers operate at Layer 7 and support HTTP/HTTPS applications, including advanced routing capabilities.
+
+### Network Load Balancing
+
+Network Load Balancers operate at Layer 4 and support TCP/UDP workloads, low-latency connectivity, and static public IP addressing.
+
+### Multi-Availability Zone Architecture
+
+Distributing application instances across multiple Availability Zones improves resilience and reduces the impact of individual Availability Zone failures.
 
 ## Skills Demonstrated
 
-- EC2 Auto Scaling Group deployment
-- Launch template configuration
+- Amazon EC2 deployment and management
+- EC2 Auto Scaling Group configuration
+- EC2 launch template configuration
 - EC2 user data automation
-- Multi-Availability Zone architecture
+- Apache web server deployment
 - Application Load Balancer configuration
-- Target group and health check management
-- CloudWatch monitoring
-- Target tracking scaling policies
+- Network Load Balancer deployment
+- Target group configuration
+- Health check management
+- Multi-Availability Zone deployments
+- Dynamic scaling policy configuration
+- CloudWatch metrics and alarms
+- Elastic IP address configuration
+- TCP and HTTP connectivity testing
+- Network ACL configuration concepts
 - Application load testing
-- Automatic instance replacement
+- Automatic EC2 instance replacement
 - AWS infrastructure validation
+- AWS resource lifecycle management
 
-## Project Progress
+## Course Completion
 
-**Section 4 — Elastic Load Balancing and Auto Scaling**
+**Neal Davis AWS SAA-C03 Course — Section 4: Elastic Load Balancing and Auto Scaling**
 
-- Course items completed: 10 of 19 (52.6%)
-- Hands-on labs completed: 3
-- Remaining course items: 9
-
-## Next Steps
-
-Continue Section 4 by studying cross-zone load balancing, session stickiness, secure listeners, and Network Load Balancer deployments.
-
-Additional hands-on exercises and technical findings will be incorporated as the course progresses.
+- Hands-on exercises successfully completed: 4
+- Section completed: November 20, 2026
 
 ## Resource Management
 
-AWS infrastructure resources should be removed when no longer required to minimize unnecessary charges. Resource cleanup will be verified as part of the project completion process.
+Temporary AWS resources were deleted following the hands-on exercises to minimize unnecessary charges.
 
----
+Resource cleanup was confirmed after completing the final Network Load Balancer exercise.
 
-**Project Status:** In Progress
-**Last Updated:** November 19, 2026
+## Project Outcome
+
+Successfully deployed and tested scalable AWS application infrastructure using Amazon EC2 Auto Scaling, Application Load Balancers, Network Load Balancers, and dynamic scaling policies.
+
+The completed hands-on exercises demonstrated automatic instance replacement, traffic distribution, scaling in response to application demand, and TCP connectivity through a Network Load Balancer.
+
+This project reinforces practical AWS architecture, networking, availability, and automation skills relevant to cloud engineering and the AWS Certified Solutions Architect – Associate certification.
